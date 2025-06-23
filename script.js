@@ -1,115 +1,40 @@
 // 🚀 CAMBIA SOLO QUESTA RIGA PER AGGIORNARE IL MESSAGGIO! 👇
 const currentMessage = "Ciao bella! 💕 Spero tu stia bene oggi. Questo è il nostro piccolo angolo segreto dove possiamo scambiarci messaggi tramite QR code! Come ti senti? 😊";
 
-// 📧 CONFIGURA EMAILJS - INSERISCI LE TUE CHIAVI QUI! 👇
-const EMAILJS_PUBLIC_KEY = "uj_lChx63t_SOIJ5Y";
-const EMAILJS_SERVICE_ID = "gmail_service";
-const EMAILJS_TEMPLATE_ID = "template_evrdvxf";
-
-// ⚠️ NON MODIFICARE NULLA SOTTO QUESTA RIGA! ⚠️
-// ================================================================
-
-// Variabili globali
-let isEmailJSReady = false;
-
-// Inizializzazione principale quando la pagina è caricata
+// Inizializzazione quando la pagina è caricata
 document.addEventListener("DOMContentLoaded", function() {
     console.log("🚀 Inizializzazione sistema QR...");
     
-    // Aspetta che EmailJS sia caricato
-    initializeEmailJS();
-    
-    // Configura il messaggio principale
+    // Mostra il messaggio
     displayCurrentMessage();
     
     // Aggiorna timestamp
     updateTimestamp();
     
-    // Configura il form di risposta
-    setupEmailForm();
-    
-    // Crea le particelle animate
+    // Crea particelle
     createFloatingParticles();
     
-    // Aggiungi tutti gli effetti visivi
+    // Effetti visivi
     setupVisualEffects();
     
-    // Configura effetto parallax (solo desktop)
+    // Parallax desktop
     if (window.innerWidth > 768) {
         setupParallaxEffect();
     }
     
-    // Log di completamento
-    console.log("✅ Sistema QR inizializzato completamente!");
+    console.log("✅ Sistema QR caricato!");
 });
 
-// Inizializza EmailJS con retry automatico
-function initializeEmailJS() {
-    let attempts = 0;
-    const maxAttempts = 10;
-    
-    function tryInit() {
-        attempts++;
-        
-        if (typeof emailjs !== 'undefined') {
-            try {
-                emailjs.init(EMAILJS_PUBLIC_KEY);
-                isEmailJSReady = true;
-                console.log("📧 EmailJS inizializzato correttamente!");
-                
-                // Verifica configurazione
-                validateEmailJSConfig();
-                
-            } catch (error) {
-                console.error("❌ Errore inizializzazione EmailJS:", error);
-                isEmailJSReady = false;
-            }
-        } else {
-            console.log(`⏳ Tentativo ${attempts}/${maxAttempts} - EmailJS non ancora disponibile...`);
-            
-            if (attempts < maxAttempts) {
-                setTimeout(tryInit, 500);
-            } else {
-                console.error("❌ EmailJS non disponibile dopo 10 tentativi!");
-                showEmailJSError();
-            }
-        }
-    }
-    
-    tryInit();
-}
-
-// Valida la configurazione EmailJS
-function validateEmailJSConfig() {
-    console.log("🔧 Validazione configurazione EmailJS...");
-    
-    if (EMAILJS_PUBLIC_KEY.includes('TUA_') || 
-        EMAILJS_SERVICE_ID.includes('TUO_') || 
-        EMAILJS_TEMPLATE_ID.includes('TUO_')) {
-        console.warn("⚠️ ATTENZIONE: Devi sostituire le chiavi placeholder con quelle reali!");
-        console.log("📋 Configurazione attuale:");
-        console.log("   Public Key:", EMAILJS_PUBLIC_KEY);
-        console.log("   Service ID:", EMAILJS_SERVICE_ID);
-        console.log("   Template ID:", EMAILJS_TEMPLATE_ID);
-        return false;
-    }
-    
-    console.log("✅ Configurazione EmailJS valida!");
-    return true;
-}
-
-// Mostra il messaggio corrente nell'interfaccia
+// Mostra il messaggio corrente
 function displayCurrentMessage() {
     const messageContent = document.getElementById("messageContent");
     if (messageContent) {
         messageContent.innerHTML = `<p>${currentMessage}</p>`;
-        console.log("💬 Messaggio visualizzato:", currentMessage.substring(0, 50) + "...");
-    } else {
-        console.error("❌ Elemento messageContent non trovato!");
+        console.log("💬 Messaggio caricato");
     }
 }
 
-// Aggiorna il timestamp
+// Aggiorna timestamp
 function updateTimestamp() {
     const timestamp = document.getElementById("timestamp");
     if (timestamp) {
@@ -127,451 +52,91 @@ function updateTimestamp() {
     }
 }
 
-// Configura il form di invio email
-function setupEmailForm() {
-    const form = document.getElementById('contact-form');
-    const sendButton = document.getElementById('send-button');
-    const successMessage = document.getElementById('success-message');
-    const errorMessage = document.getElementById('error-message');
-    const messageTextarea = document.getElementById('message');
-
-    if (!form) {
-        console.error("❌ Form contact-form non trovato!");
-        return;
-    }
-
-    if (!sendButton) {
-        console.error("❌ Pulsante send-button non trovato!");
-        return;
-    }
-
-    if (!messageTextarea) {
-        console.error("❌ Textarea message non trovata!");
-        return;
-    }
-
-    console.log("📝 Form EmailJS configurato correttamente");
-
-    form.addEventListener('submit', function(event) {
-        event.preventDefault();
-        console.log("📤 Tentativo di invio messaggio...");
-        
-        // Verifica che EmailJS sia pronto
-        if (!isEmailJSReady) {
-            console.error("❌ EmailJS non è stato inizializzato!");
-            showErrorMessage("EmailJS non è pronto. Riprova tra qualche secondo.");
-            return;
-        }
-
-        // Verifica configurazione
-        if (!validateEmailJSConfig()) {
-            showErrorMessage("Configurazione EmailJS non valida. Controlla le chiavi.");
-            return;
-        }
-
-        // Verifica che il messaggio non sia vuoto
-        const message = messageTextarea.value.trim();
-        if (!message) {
-            alert('Scrivi un messaggio prima di inviare! 💭');
-            messageTextarea.focus();
-            return;
-        }
-
-        // Inizia processo di invio
-        startSending();
-
-        // Prepara i dati per EmailJS
-        const templateParams = {
-            message: message,
-            current_date: new Date().toLocaleString('it-IT', {
-                weekday: 'long',
-                year: 'numeric',
-                month: 'long',
-                day: 'numeric',
-                hour: '2-digit',
-                minute: '2-digit'
-            }),
-            timestamp: Date.now(),
-            user_agent: navigator.userAgent,
-            page_url: window.location.href
-        };
-
-        console.log("📧 Invio email con parametri:", templateParams);
-
-        // Invia email tramite EmailJS
-        emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, templateParams)
-            .then(function(response) {
-                console.log('✅ EMAIL INVIATA CON SUCCESSO!', response.status, response.text);
-                handleSuccessfulSend();
-            })
-            .catch(function(error) {
-                console.error('❌ ERRORE INVIO EMAIL:', error);
-                handleFailedSend(error);
-            })
-            .finally(function() {
-                endSending();
-            });
-    });
-
-    // Funzioni helper per gestire l'invio
-    function startSending() {
-        sendButton.disabled = true;
-        sendButton.innerHTML = '📤 Invio in corso...';
-        sendButton.style.opacity = '0.7';
-        hideAllMessages();
-    }
-
-    function endSending() {
-        sendButton.disabled = false;
-        sendButton.innerHTML = '💌 Invia risposta anonima';
-        sendButton.style.opacity = '1';
-    }
-
-    function handleSuccessfulSend() {
-        showSuccessMessage();
-        messageTextarea.value = '';
-        
-        // Effetto confetti
-        createConfettiEffect();
-    }
-
-    function handleFailedSend(error) {
-        let errorMsg = "Si è verificato un errore. Riprova tra qualche secondo.";
-        
-        if (error && error.text) {
-            if (error.text.includes('rate limit')) {
-                errorMsg = "Troppi messaggi inviati. Riprova tra qualche minuto.";
-            } else if (error.text.includes('network')) {
-                errorMsg = "Problema di connessione. Controlla internet e riprova.";
-            }
-        }
-        
-        showErrorMessage(errorMsg);
-    }
-
-    function showSuccessMessage() {
-        if (successMessage) {
-            successMessage.style.display = 'block';
-            successMessage.scrollIntoView({ behavior: 'smooth', block: 'center' });
-            
-            // Nascondi automaticamente dopo 5 secondi
-            setTimeout(() => {
-                successMessage.style.display = 'none';
-            }, 5000);
-        }
-    }
-
-    function showErrorMessage(customMessage = null) {
-        if (errorMessage) {
-            if (customMessage) {
-                const errorText = errorMessage.querySelector('p');
-                if (errorText) {
-                    errorText.textContent = customMessage;
-                }
-            }
-            
-            errorMessage.style.display = 'block';
-            errorMessage.scrollIntoView({ behavior: 'smooth', block: 'center' });
-            
-            // Nascondi automaticamente dopo 6 secondi
-            setTimeout(() => {
-                errorMessage.style.display = 'none';
-            }, 6000);
-        }
-    }
-
-    function hideAllMessages() {
-        if (successMessage) successMessage.style.display = 'none';
-        if (errorMessage) errorMessage.style.display = 'none';
-    }
-}
-
-// Crea particelle animate fluttuanti
+// Crea particelle
 function createFloatingParticles() {
     const particlesContainer = document.getElementById('particles');
-    if (!particlesContainer) {
-        console.warn("⚠️ Container particelle non trovato");
-        return;
-    }
+    if (!particlesContainer) return;
 
-    // Pulisci particelle esistenti
     particlesContainer.innerHTML = '';
 
-    const particleCount = window.innerWidth > 768 ? 25 : 15;
-    console.log(`✨ Creazione ${particleCount} particelle...`);
+    const particleCount = window.innerWidth > 768 ? 20 : 10;
 
     for (let i = 0; i < particleCount; i++) {
-        const particle = createSingleParticle();
+        const particle = document.createElement('div');
+        particle.className = 'particle';
+        
+        const size = Math.random() * 4 + 2;
+        particle.style.width = size + 'px';
+        particle.style.height = size + 'px';
+        particle.style.left = Math.random() * 100 + '%';
+        particle.style.animationDelay = Math.random() * 20 + 's';
+        particle.style.animationDuration = (Math.random() * 10 + 15) + 's';
+        
         particlesContainer.appendChild(particle);
     }
 }
 
-// Crea una singola particella
-function createSingleParticle() {
-    const particle = document.createElement('div');
-    particle.className = 'particle';
-    
-    // Proprietà casuali
-    const size = Math.random() * 4 + 2;
-    const opacity = Math.random() * 0.3 + 0.1;
-    const hue = Math.random() * 60 + 200; // Blu/viola
-    
-    // Stili
-    particle.style.width = size + 'px';
-    particle.style.height = size + 'px';
-    particle.style.left = Math.random() * 100 + '%';
-    particle.style.background = `hsla(${hue}, 70%, 80%, ${opacity})`;
-    particle.style.animationDelay = Math.random() * 20 + 's';
-    particle.style.animationDuration = (Math.random() * 15 + 20) + 's';
-    
-    return particle;
-}
-
-// Configura tutti gli effetti visivi
+// Effetti visivi
 function setupVisualEffects() {
-    setupHoverEffects();
-    setupRippleEffects();
-    setupTextareaEffects();
-    
-    console.log("✨ Effetti visivi configurati");
-}
-
-// Effetti hover per elementi interattivi
-function setupHoverEffects() {
-    const container = document.querySelector('.container');
+    const textarea = document.querySelector('textarea');
     const buttons = document.querySelectorAll('button');
-    
-    // Effetto hover container
-    if (container) {
-        container.addEventListener('mouseenter', function() {
-            this.style.transform = 'translateY(-8px)';
+
+    // Effetti textarea
+    if (textarea) {
+        textarea.addEventListener('focus', function() {
+            this.style.transform = 'scale(1.02)';
         });
-        
-        container.addEventListener('mouseleave', function() {
-            this.style.transform = 'translateY(0)';
+
+        textarea.addEventListener('blur', function() {
+            this.style.transform = 'scale(1)';
         });
     }
-    
-    // Effetti hover pulsanti
-    buttons.forEach(button => {
-        button.addEventListener('mouseenter', function() {
-            if (!this.disabled) {
-                this.style.transform = 'translateY(-2px) scale(1.02)';
-            }
-        });
-        
-        button.addEventListener('mouseleave', function() {
-            if (!this.disabled) {
-                this.style.transform = 'translateY(0) scale(1)';
-            }
-        });
-    });
-}
 
-// Effetti ripple sui pulsanti
-function setupRippleEffects() {
-    const buttons = document.querySelectorAll('button');
-    
+    // Effetti pulsanti
     buttons.forEach(button => {
         button.addEventListener('click', function(e) {
             if (this.disabled) return;
-            createRippleEffect(this, e);
+            
+            const ripple = document.createElement('span');
+            const rect = this.getBoundingClientRect();
+            const size = Math.max(rect.width, rect.height);
+            const x = e.clientX - rect.left - size / 2;
+            const y = e.clientY - rect.top - size / 2;
+            
+            ripple.style.width = ripple.style.height = size + 'px';
+            ripple.style.left = x + 'px';
+            ripple.style.top = y + 'px';
+            ripple.style.position = 'absolute';
+            ripple.style.borderRadius = '50%';
+            ripple.style.background = 'rgba(255, 255, 255, 0.3)';
+            ripple.style.transform = 'scale(0)';
+            ripple.style.animation = 'ripple 0.6s linear';
+            ripple.style.pointerEvents = 'none';
+            
+            this.appendChild(ripple);
+            
+            setTimeout(() => {
+                ripple.remove();
+            }, 600);
         });
     });
 }
 
-// Crea effetto ripple
-function createRippleEffect(element, event) {
-    const ripple = document.createElement('span');
-    const rect = element.getBoundingClientRect();
-    const size = Math.max(rect.width, rect.height);
-    const x = event.clientX - rect.left - size / 2;
-    const y = event.clientY - rect.top - size / 2;
-    
-    ripple.style.cssText = `
-        width: ${size}px;
-        height: ${size}px;
-        left: ${x}px;
-        top: ${y}px;
-        position: absolute;
-        border-radius: 50%;
-        background: rgba(255, 255, 255, 0.4);
-        transform: scale(0);
-        animation: ripple 0.6s linear;
-        pointer-events: none;
-        z-index: 1000;
-    `;
-    
-    element.style.position = 'relative';
-    element.style.overflow = 'hidden';
-    element.appendChild(ripple);
-    
-    setTimeout(() => {
-        if (ripple.parentNode) {
-            ripple.remove();
-        }
-    }, 600);
-}
-
-// Effetti per la textarea
-function setupTextareaEffects() {
-    const textarea = document.querySelector('textarea');
-    if (!textarea) return;
-    
-    // Focus effects
-    textarea.addEventListener('focus', function() {
-        this.style.transform = 'scale(1.02)';
-        this.style.borderColor = 'rgba(255, 255, 255, 0.4)';
-    });
-    
-    textarea.addEventListener('blur', function() {
-        this.style.transform = 'scale(1)';
-        this.style.borderColor = 'rgba(255, 255, 255, 0.1)';
-    });
-    
-    // Typing effect
-    textarea.addEventListener('input', function() {
-        const length = this.value.length;
-        const hue = Math.min(length * 2, 120); // Da rosso a verde
-        this.style.boxShadow = `inset 0 2px 10px rgba(0, 0, 0, 0.1), 0 0 0 2px hsla(${hue}, 70%, 50%, 0.3)`;
-    });
-}
-
-// Effetto parallax per desktop
+// Parallax
 function setupParallaxEffect() {
     const container = document.querySelector('.container');
     if (!container) return;
     
-    let ticking = false;
-    
-    function updateParallax(e) {
-        if (!ticking) {
-            requestAnimationFrame(() => {
-                const xAxis = (window.innerWidth / 2 - e.pageX) / 50;
-                const yAxis = (window.innerHeight / 2 - e.pageY) / 50;
-                
-                container.style.transform = `perspective(1000px) rotateY(${xAxis}deg) rotateX(${yAxis}deg) translateY(-5px)`;
-                ticking = false;
-            });
-            ticking = true;
-        }
-    }
-    
-    document.addEventListener('mousemove', updateParallax);
-    
-    document.addEventListener('mouseleave', () => {
-        container.style.transform = 'perspective(1000px) rotateY(0deg) rotateX(0deg) translateY(0)';
+    document.addEventListener('mousemove', function(e) {
+        const xAxis = (window.innerWidth / 2 - e.pageX) / 50;
+        const yAxis = (window.innerHeight / 2 - e.pageY) / 50;
+        
+        container.style.transform = `rotateY(${xAxis}deg) rotateX(${yAxis}deg) translateY(-5px)`;
+    });
+
+    document.addEventListener('mouseleave', function() {
+        container.style.transform = 'rotateY(0deg) rotateX(0deg) translateY(0)';
     });
 }
 
-// Effetto confetti per successo
-function createConfettiEffect() {
-    const colors = ['#ff6b6b', '#4ecdc4', '#45b7d1', '#96ceb4', '#ffeaa7'];
-    
-    for (let i = 0; i < 30; i++) {
-        setTimeout(() => {
-            const confetti = document.createElement('div');
-            confetti.style.cssText = `
-                position: fixed;
-                top: -10px;
-                left: ${Math.random() * 100}%;
-                width: 8px;
-                height: 8px;
-                background: ${colors[Math.floor(Math.random() * colors.length)]};
-                border-radius: 50%;
-                animation: confetti-fall 3s linear forwards;
-                pointer-events: none;
-                z-index: 10000;
-            `;
-            
-            document.body.appendChild(confetti);
-            
-            setTimeout(() => {
-                confetti.remove();
-            }, 3000);
-        }, i * 50);
-    }
-    
-    // CSS per animazione confetti
-    if (!document.getElementById('confetti-style')) {
-        const style = document.createElement('style');
-        style.id = 'confetti-style';
-        style.textContent = `
-            @keyframes confetti-fall {
-                to {
-                    transform: translateY(100vh) rotate(720deg);
-                    opacity: 0;
-                }
-            }
-        `;
-        document.head.appendChild(style);
-    }
-}
-
-// Mostra errore EmailJS non disponibile
-function showEmailJSError() {
-    const errorDiv = document.createElement('div');
-    errorDiv.style.cssText = `
-        position: fixed;
-        top: 20px;
-        right: 20px;
-        background: rgba(244, 67, 54, 0.9);
-        color: white;
-        padding: 15px;
-        border-radius: 10px;
-        z-index: 10000;
-        max-width: 300px;
-        font-size: 14px;
-    `;
-    errorDiv.innerHTML = `
-        <strong>⚠️ Errore EmailJS</strong><br>
-        Il servizio email non è disponibile. Ricarica la pagina.
-    `;
-    
-    document.body.appendChild(errorDiv);
-    
-    setTimeout(() => {
-        errorDiv.remove();
-    }, 10000);
-}
-
-// Gestione errori globali
-window.addEventListener('error', function(e) {
-    console.error('❌ Errore JavaScript globale:', e.error);
-});
-
-// Gestione visibilità pagina
-document.addEventListener('visibilitychange', function() {
-    if (document.visibilityState === 'visible') {
-        console.log("👁️ Pagina di nuovo visibile");
-    }
-});
-
-// Test manuale EmailJS (chiamabile dalla console)
-window.testEmailJS = function() {
-    console.log("🧪 Test EmailJS...");
-    
-    if (!isEmailJSReady) {
-        console.error("❌ EmailJS non pronto!");
-        return false;
-    }
-    
-    if (!validateEmailJSConfig()) {
-        console.error("❌ Configurazione non valida!");
-        return false;
-    }
-    
-    console.log("✅ EmailJS pronto per l'uso!");
-    return true;
-};
-
-// Log finale di inizializzazione
-console.log(`
-🎉 SISTEMA QR MESSAGING CARICATO!
-📧 200 messaggi gratuiti al mese con EmailJS
-🔧 Digita testEmailJS() nella console per testare
-📱 Sistema ottimizzato per mobile e desktop
-💕 Pronto per messaggi anonimi!
-`);
-
-// Fine del file JavaScript
+console.log("💕 Sistema QR con Formspree caricato!");
