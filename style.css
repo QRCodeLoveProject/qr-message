@@ -293,26 +293,24 @@ button:active {
   transform: translateY(-1px) scale(0.98);
 }
 
-.whatsapp-container {
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
+.anonymous-note {
+  background: rgba(0, 255, 0, 0.1);
+  border: 1px solid rgba(0, 255, 0, 0.2);
+  border-radius: 15px;
+  padding: 15px;
+  margin-top: 20px;
+  text-align: center;
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.9);
 }
 
-.whatsapp-button {
-  background: linear-gradient(135deg, #25D366, #128C7E) !important;
-  margin-top: 0 !important;
+.anonymous-note p {
+  margin: 0;
+  font-weight: 300;
 }
 
-.sms-button {
-  background: linear-gradient(135deg, #007AFF, #5856D6) !important;
-  margin-top: 0 !important;
-}
-
-.whatsapp-button:hover,
-.sms-button:hover {
-  transform: translateY(-3px) scale(1.02);
-  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+.anonymous-note strong {
+  color: #4CAF50;
 }
 
 .footer {
