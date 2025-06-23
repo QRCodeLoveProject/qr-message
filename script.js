@@ -89,9 +89,9 @@ function validateEmailJSConfig() {
         EMAILJS_TEMPLATE_ID.includes('TUO_')) {
         console.warn("⚠️ ATTENZIONE: Devi sostituire le chiavi placeholder con quelle reali!");
         console.log("📋 Configurazione attuale:");
-        console.log("   Public Key:", EMAILJS_PUBLIC_KEY);
-        console.log("   Service ID:", EMAILJS_SERVICE_ID);
-        console.log("   Template ID:", EMAILJS_TEMPLATE_ID);
+        console.log("   Public Key:", uj_lChx63t_SOIJ5Y);
+        console.log("   Service ID:", gmail_service);
+        console.log("   Template ID:", gmail_service);
         return false;
     }
     
