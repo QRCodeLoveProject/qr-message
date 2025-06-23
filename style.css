@@ -13,7 +13,6 @@ body {
   position: relative;
 }
 
-/* Animated background particles */
 .particles {
   position: fixed;
   top: 0;
@@ -48,7 +47,6 @@ body {
   }
 }
 
-/* Aurora effect */
 .aurora {
   position: fixed;
   top: 0;
@@ -344,7 +342,6 @@ button:active {
   }
 }
 
-/* Responsive design */
 @media (max-width: 600px) {
   .container {
     padding: 25px 20px;
@@ -365,7 +362,6 @@ button:active {
   }
 }
 
-/* Scroll animations */
 @keyframes fadeInUp {
   from {
     opacity: 0;
@@ -381,7 +377,6 @@ button:active {
   animation: fadeInUp 0.6s ease-out forwards;
 }
 
-/* Ripple effect animation */
 @keyframes ripple {
   to {
     transform: scale(4);
