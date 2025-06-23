@@ -13,7 +13,7 @@
   
   <!-- Aurora effect -->
   <div class="aurora"></div>
-  
+
   <div class="container fade-in">
     <div class="message-display">
       <h1>💕 Un messaggio per te</h1>
@@ -23,23 +23,22 @@
       <p class="timestamp" id="timestamp"></p>
     </div>
 
-    <!-- Form di risposta (nascosto inizialmente) -->
-    <div class="response-section" id="responseSection" style="display: none;">
+    <!-- Risposta Anonima -->
+    <div class="response-section">
       <div class="divider"></div>
-      <h3>Rispondi qui:</h3>
+      <h3>Rispondi in forma anonima:</h3>
       <form action="https://formspree.io/f/xeokrkro" method="POST">
-    <textarea name="message" placeholder="Scrivi la tua risposta anonima qui... 💭 La tua identità rimarrà segreta." required rows="4"></textarea>
-    <input type="hidden" name="_replyto" value="">
-    <input type="hidden" name="_subject" value="💕 Risposta ANONIMA al messaggio QR">
-    <input type="hidden" name="_next" value="data:text/html,<html><body><h1 style='text-align:center;font-family:Arial;color:#4CAF50;'>✅ Messaggio inviato!<br>💕 La tua risposta è stata inviata in forma anonima.</h1></body></html>">
-    <button type="submit">💌 Invia risposta anonima</button>
-</form>
+        <textarea name="message" placeholder="Scrivi la tua risposta anonima qui... 💭 La tua identità rimarrà segreta." required rows="4"></textarea>
+        <input type="hidden" name="_replyto" value="">
+        <input type="hidden" name="_subject" value="💕 Risposta ANONIMA al messaggio QR">
+        <input type="hidden" name="_next" value="data:text/html,<html><body><h1 style='text-align:center;font-family:Arial;color:#4CAF50;'>✅ Messaggio inviato!<br>💕 La tua risposta è stata inviata in forma anonima.</h1></body></html>">
+        <button type="submit">💌 Invia risposta anonima</button>
+      </form>
+      
+      <div class="anonymous-note">
+        <p>🔒 <strong>100% Anonimo:</strong> Il tuo messaggio arriverà senza rivelare la tua identità</p>
+      </div>
     </div>
-
-    <!-- Pulsante per mostrare/nascondere la risposta -->
-    <button class="toggle-response" onclick="toggleResponse()">
-      💬 Rispondi al messaggio
-    </button>
   </div>
 
   <div class="footer">
