@@ -11,7 +11,6 @@ const EMAILJS_TEMPLATE_ID = "template_evrdvxf";
 
 // Variabili globali
 let isEmailJSReady = false;
-let particles = [];
 
 // Inizializzazione principale quando la pagina è caricata
 document.addEventListener("DOMContentLoaded", function() {
@@ -141,7 +140,17 @@ function setupEmailForm() {
         return;
     }
 
-    console.log("📝 Form EmailJS configurato");
+    if (!sendButton) {
+        console.error("❌ Pulsante send-button non trovato!");
+        return;
+    }
+
+    if (!messageTextarea) {
+        console.error("❌ Textarea message non trovata!");
+        return;
+    }
+
+    console.log("📝 Form EmailJS configurato correttamente");
 
     form.addEventListener('submit', function(event) {
         event.preventDefault();
@@ -210,23 +219,19 @@ function setupEmailForm() {
         sendButton.innerHTML = '📤 Invio in corso...';
         sendButton.style.opacity = '0.7';
         hideAllMessages();
-        
-        // Aggiungi classe per animazione
-        sendButton.classList.add('sending');
     }
 
     function endSending() {
         sendButton.disabled = false;
         sendButton.innerHTML = '💌 Invia risposta anonima';
         sendButton.style.opacity = '1';
-        sendButton.classList.remove('sending');
     }
 
     function handleSuccessfulSend() {
         showSuccessMessage();
         messageTextarea.value = '';
         
-        // Effetto confetti (opzionale)
+        // Effetto confetti
         createConfettiEffect();
     }
 
@@ -247,18 +252,12 @@ function setupEmailForm() {
     function showSuccessMessage() {
         if (successMessage) {
             successMessage.style.display = 'block';
-            successMessage.style.animation = 'slideDown 0.5s ease-out';
             successMessage.scrollIntoView({ behavior: 'smooth', block: 'center' });
             
-            // Nascondi automaticamente dopo 8 secondi
+            // Nascondi automaticamente dopo 5 secondi
             setTimeout(() => {
-                if (successMessage.style.display !== 'none') {
-                    successMessage.style.animation = 'fadeOut 0.5s ease-out';
-                    setTimeout(() => {
-                        successMessage.style.display = 'none';
-                    }, 500);
-                }
-            }, 8000);
+                successMessage.style.display = 'none';
+            }, 5000);
         }
     }
 
@@ -272,30 +271,18 @@ function setupEmailForm() {
             }
             
             errorMessage.style.display = 'block';
-            errorMessage.style.animation = 'slideDown 0.5s ease-out';
             errorMessage.scrollIntoView({ behavior: 'smooth', block: 'center' });
             
             // Nascondi automaticamente dopo 6 secondi
             setTimeout(() => {
-                if (errorMessage.style.display !== 'none') {
-                    errorMessage.style.animation = 'fadeOut 0.5s ease-out';
-                    setTimeout(() => {
-                        errorMessage.style.display = 'none';
-                    }, 500);
-                }
+                errorMessage.style.display = 'none';
             }, 6000);
         }
     }
 
     function hideAllMessages() {
-        if (successMessage) {
-            successMessage.style.display = 'none';
-            successMessage.style.animation = '';
-        }
-        if (errorMessage) {
-            errorMessage.style.display = 'none';
-            errorMessage.style.animation = '';
-        }
+        if (successMessage) successMessage.style.display = 'none';
+        if (errorMessage) errorMessage.style.display = 'none';
     }
 }
 
@@ -309,7 +296,6 @@ function createFloatingParticles() {
 
     // Pulisci particelle esistenti
     particlesContainer.innerHTML = '';
-    particles = [];
 
     const particleCount = window.innerWidth > 768 ? 25 : 15;
     console.log(`✨ Creazione ${particleCount} particelle...`);
@@ -317,7 +303,6 @@ function createFloatingParticles() {
     for (let i = 0; i < particleCount; i++) {
         const particle = createSingleParticle();
         particlesContainer.appendChild(particle);
-        particles.push(particle);
     }
 }
 
@@ -347,7 +332,6 @@ function setupVisualEffects() {
     setupHoverEffects();
     setupRippleEffects();
     setupTextareaEffects();
-    setupScrollEffects();
     
     console.log("✨ Effetti visivi configurati");
 }
@@ -438,13 +422,11 @@ function setupTextareaEffects() {
     textarea.addEventListener('focus', function() {
         this.style.transform = 'scale(1.02)';
         this.style.borderColor = 'rgba(255, 255, 255, 0.4)';
-        this.parentElement.style.transform = 'translateY(-2px)';
     });
     
     textarea.addEventListener('blur', function() {
         this.style.transform = 'scale(1)';
         this.style.borderColor = 'rgba(255, 255, 255, 0.1)';
-        this.parentElement.style.transform = 'translateY(0)';
     });
     
     // Typing effect
@@ -453,22 +435,6 @@ function setupTextareaEffects() {
         const hue = Math.min(length * 2, 120); // Da rosso a verde
         this.style.boxShadow = `inset 0 2px 10px rgba(0, 0, 0, 0.1), 0 0 0 2px hsla(${hue}, 70%, 50%, 0.3)`;
     });
-}
-
-// Effetti scroll e viewport
-function setupScrollEffects() {
-    // Intersection Observer per animazioni on-scroll
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('visible');
-            }
-        });
-    }, { threshold: 0.1 });
-    
-    // Osserva elementi animabili
-    const animatedElements = document.querySelectorAll('.fade-in, .container, .response-section');
-    animatedElements.forEach(el => observer.observe(el));
 }
 
 // Effetto parallax per desktop
@@ -498,10 +464,9 @@ function setupParallaxEffect() {
     });
 }
 
-// Effetto confetti per successo (bonus)
+// Effetto confetti per successo
 function createConfettiEffect() {
     const colors = ['#ff6b6b', '#4ecdc4', '#45b7d1', '#96ceb4', '#ffeaa7'];
-    const confettiContainer = document.body;
     
     for (let i = 0; i < 30; i++) {
         setTimeout(() => {
@@ -519,7 +484,7 @@ function createConfettiEffect() {
                 z-index: 10000;
             `;
             
-            confettiContainer.appendChild(confetti);
+            document.body.appendChild(confetti);
             
             setTimeout(() => {
                 confetti.remove();
@@ -570,21 +535,20 @@ function showEmailJSError() {
     }, 10000);
 }
 
-// Funzioni di debug e utility
-function debugInfo() {
-    console.log("🔧 DEBUG INFO:");
-    console.log("- EmailJS Ready:", isEmailJSReady);
-    console.log("- Public Key:", EMAILJS_PUBLIC_KEY);
-    console.log("- Service ID:", EMAILJS_SERVICE_ID);
-    console.log("- Template ID:", EMAILJS_TEMPLATE_ID);
-    console.log("- Particles:", particles.length);
-    console.log("- Current Message:", currentMessage.substring(0, 50) + "...");
-    console.log("- Screen Size:", window.innerWidth + "x" + window.innerHeight);
-    console.log("- User Agent:", navigator.userAgent);
-}
+// Gestione errori globali
+window.addEventListener('error', function(e) {
+    console.error('❌ Errore JavaScript globale:', e.error);
+});
 
-// Test manuale EmailJS
-function testEmailJS() {
+// Gestione visibilità pagina
+document.addEventListener('visibilitychange', function() {
+    if (document.visibilityState === 'visible') {
+        console.log("👁️ Pagina di nuovo visibile");
+    }
+});
+
+// Test manuale EmailJS (chiamabile dalla console)
+window.testEmailJS = function() {
     console.log("🧪 Test EmailJS...");
     
     if (!isEmailJSReady) {
@@ -599,52 +563,18 @@ function testEmailJS() {
     
     console.log("✅ EmailJS pronto per l'uso!");
     return true;
-}
-
-// Gestione errori globali
-window.addEventListener('error', function(e) {
-    console.error('❌ Errore JavaScript globale:', e.error);
-    console.error('File:', e.filename);
-    console.error('Riga:', e.lineno);
-});
-
-// Gestione visibilità pagina
-document.addEventListener('visibilitychange', function() {
-    if (document.visibilityState === 'visible') {
-        console.log("👁️ Pagina di nuovo visibile");
-        // Riavvia particelle se necessario
-        if (particles.length === 0) {
-            createFloatingParticles();
-        }
-    }
-});
-
-// Gestione resize finestra
-window.addEventListener('resize', function() {
-    // Ricrea particelle con numero appropriato
-    setTimeout(createFloatingParticles, 100);
-});
-
-// Esposizione funzioni globali per debug
-window.qrDebug = {
-    info: debugInfo,
-    test: testEmailJS,
-    particles: () => particles.length,
-    config: () => ({
-        publicKey: EMAILJS_PUBLIC_KEY,
-        serviceId: EMAILJS_SERVICE_ID,
-        templateId: EMAILJS_TEMPLATE_ID
-    })
 };
 
 // Log finale di inizializzazione
 console.log(`
 🎉 SISTEMA QR MESSAGING CARICATO!
 📧 200 messaggi gratuiti al mese con EmailJS
-🔧 Usa qrDebug.info() per informazioni debug
-💡 Usa qrDebug.test() per testare EmailJS
+🔧 Digita testEmailJS() nella console per testare
 📱 Sistema ottimizzato per mobile e desktop
 💕 Pronto per messaggi anonimi!
+`);
+
+// Fine del file JavaScript
 `);
 
 // Fine del file JavaScript
