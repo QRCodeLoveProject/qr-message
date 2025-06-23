@@ -1,39 +1,8 @@
 // 🚀 CAMBIA SOLO QUESTA RIGA PER AGGIORNARE IL MESSAGGIO! 👇
 const currentMessage = "Ciao bella! 💕 Spero tu stia bene oggi. Questo è il nostro piccolo angolo segreto dove possiamo scambiarci messaggi tramite QR code! Come ti senti? 😊";
 
-// 📱 INSERISCI QUI IL TUO NUMERO WHATSAPP (con prefisso internazionale, senza +)
-const whatsappNumber = "393405484345"; // Esempio: 393123456789 per Italia
-
 // ⚠️ NON MODIFICARE NULLA SOTTO QUESTA RIGA! ⚠️
 // ================================================
-
-// Funzione per inviare messaggio su WhatsApp
-function sendWhatsApp() {
-  const message = document.getElementById('responseText').value;
-  if (message.trim() === '') {
-    alert('Scrivi un messaggio prima di inviare! 💭');
-    return;
-  }
-  
-  const whatsappText = encodeURIComponent(`💕 Risposta al messaggio QR:\n\n${message}`);
-  const whatsappURL = `https://wa.me/${whatsappNumber}?text=${whatsappText}`;
-  
-  window.open(whatsappURL, '_blank');
-}
-
-// Funzione per inviare SMS
-function sendSMS() {
-  const message = document.getElementById('responseText').value;
-  if (message.trim() === '') {
-    alert('Scrivi un messaggio prima di inviare! 💭');
-    return;
-  }
-  
-  const smsText = encodeURIComponent(`💕 Risposta QR: ${message}`);
-  const smsURL = `sms:${whatsappNumber}?body=${smsText}`;
-  
-  window.location.href = smsURL;
-}
 
 // Timestamp functionality
 window.addEventListener("DOMContentLoaded", () => {
@@ -59,7 +28,7 @@ window.addEventListener("DOMContentLoaded", () => {
 });
 
 // Funzione per mostrare/nascondere la sezione di risposta
-// (Non più necessaria - sempre visibile ora)
+// (Sezione sempre visibile per mantenere l'anonimato)
 
 // Create floating particles
 function createParticles() {
@@ -161,9 +130,6 @@ if (window.innerWidth > 768) {
 //   window.location.reload();
 // }, 30000);
 
-// Console log for debugging
-console.log("💕 Sistema di messaggistica QR caricato!");
-console.log("📱 Per aggiornare il messaggio, modifica solo la variabile 'currentMessage' all'inizio del file!");
 // Console log for debugging
 console.log("💕 Sistema di messaggistica QR caricato!");
 console.log("📱 Per aggiornare il messaggio, modifica solo la variabile 'currentMessage' all'inizio del file!");
