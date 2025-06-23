@@ -2,9 +2,9 @@
 const currentMessage = "Ciao bella! 💕 Spero tu stia bene oggi. Questo è il nostro piccolo angolo segreto dove possiamo scambiarci messaggi tramite QR code! Come ti senti? 😊";
 
 // 📧 CONFIGURA EMAILJS - INSERISCI LE TUE CHIAVI QUI! 👇
-const EMAILJS_PUBLIC_KEY = "TUA_PUBLIC_KEY_QUI";     // Dal dashboard EmailJS Integration > Browser
-const EMAILJS_SERVICE_ID = "TUO_SERVICE_ID_QUI";     // Il tuo Service ID (es: gmail_service)
-const EMAILJS_TEMPLATE_ID = "TUO_TEMPLATE_ID_QUI";   // Il tuo Template ID (es: template_abc123)
+const EMAILJS_PUBLIC_KEY = "uj_lChx63t_SOIJ5Y";
+const EMAILJS_SERVICE_ID = "gmail_service";
+const EMAILJS_TEMPLATE_ID = "template_evrdvxf";
 
 // ⚠️ NON MODIFICARE NULLA SOTTO QUESTA RIGA! ⚠️
 // ================================================================
@@ -89,9 +89,9 @@ function validateEmailJSConfig() {
         EMAILJS_TEMPLATE_ID.includes('TUO_')) {
         console.warn("⚠️ ATTENZIONE: Devi sostituire le chiavi placeholder con quelle reali!");
         console.log("📋 Configurazione attuale:");
-        console.log("   Public Key:", uj_lChx63t_SOIJ5Y);
-        console.log("   Service ID:", gmail_service);
-        console.log("   Template ID:", gmail_service);
+        console.log("   Public Key:", EMAILJS_PUBLIC_KEY);
+        console.log("   Service ID:", EMAILJS_SERVICE_ID);
+        console.log("   Template ID:", EMAILJS_TEMPLATE_ID);
         return false;
     }
     
