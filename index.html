@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>💕 Messaggio per te</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Animated particles -->
+  <div class="particles" id="particles"></div>
+  
+  <!-- Aurora effect -->
+  <div class="aurora"></div>
+
+  <div class="container fade-in">
+    <div class="message-display">
+      <h1>💕 Un messaggio per te</h1>
+      <div class="message-content" id="messageContent">
+        <!-- Il messaggio verrà caricato qui da JavaScript -->
+      </div>
+      <p class="timestamp" id="timestamp"></p>
+    </div>
+
+    <!-- Form di risposta (nascosto inizialmente) -->
+    <div class="response-section" id="responseSection" style="display: none;">
+      <div class="divider"></div>
+      <h3>Rispondi qui:</h3>
+      <form action="https://formsubmit.co/simiangold@icloud.com" method="POST">
+        <textarea name="message" placeholder="Scrivi la tua risposta qui... 💭" required></textarea>
+        <input type="hidden" name="_captcha" value="false">
+        <input type="hidden" name="_subject" value="💕 Risposta al messaggio QR">
+        <input type="hidden" name="_next" value="https://tuosito.com/thanks.html">
+        <button type="submit">💌 Invia risposta</button>
+      </form>
+    </div>
+
+    <!-- Pulsante per mostrare/nascondere la risposta -->
+    <button class="toggle-response" onclick="toggleResponse()">
+      💬 Rispondi al messaggio
+    </button>
+  </div>
+
+  <div class="footer">
+    <div class="security-badge">
+      🔒 <span>Conversazione privata tramite QR code</span>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
