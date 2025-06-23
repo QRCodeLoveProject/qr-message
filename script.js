@@ -1,5 +1,5 @@
 // 🚀 CAMBIA SOLO QUESTA RIGA PER AGGIORNARE IL MESSAGGIO! 👇
-const currentMessage = "Ciao bella! 💕 Spero tu stia bene oggi. Questo è il nostro piccolo angolo segreto dove possiamo scambiarci messaggi tramite QR code! Come ti senti? 😊";
+const currentMessage = "tutto bene, quando ci vediamo?";
 
 // Inizializzazione quando la pagina è caricata
 document.addEventListener("DOMContentLoaded", function() {
