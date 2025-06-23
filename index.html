@@ -6,8 +6,6 @@
   <title>💕 Messaggio per te</title>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
-  <!-- EmailJS -->
-  <script src="https://cdn.emailjs.com/npm/@emailjs/browser@3/dist/email.min.js"></script>
 </head>
 <body>
   <!-- Animated particles -->
@@ -25,33 +23,19 @@
       <p class="timestamp" id="timestamp"></p>
     </div>
 
-    <!-- Risposta Anonima con EmailJS -->
+    <!-- Risposta con FORMSPREE -->
     <div class="response-section">
       <div class="divider"></div>
       <h3>Rispondi in forma anonima:</h3>
-      <form id="contact-form">
-        <textarea name="message" id="message" placeholder="Scrivi la tua risposta anonima qui... 💭 La tua identità rimarrà segreta." required rows="4"></textarea>
-        <button type="submit" id="send-button">💌 Invia risposta anonima</button>
+      <form action="https://formspree.io/f/xeokrkro" method="POST">
+        <textarea name="message" placeholder="Scrivi la tua risposta anonima qui... 💭 La tua identità rimarrà segreta." required rows="4"></textarea>
+        <input type="hidden" name="_replyto" value="">
+        <input type="hidden" name="_subject" value="💕 Risposta ANONIMA al messaggio QR">
+        <button type="submit">💌 Invia risposta anonima</button>
       </form>
       
       <div class="anonymous-note">
         <p>🔒 <strong>100% Anonimo:</strong> Il tuo messaggio arriverà senza rivelare la tua identità</p>
-      </div>
-
-      <!-- Messaggio di conferma -->
-      <div id="success-message" style="display: none;">
-        <div style="background: rgba(76, 175, 80, 0.1); border: 1px solid rgba(76, 175, 80, 0.3); border-radius: 15px; padding: 20px; margin-top: 20px; text-align: center;">
-          <h3 style="color: #4CAF50; margin-bottom: 10px;">✅ Messaggio inviato!</h3>
-          <p style="color: rgba(255, 255, 255, 0.9); margin: 0;">La tua risposta è stata inviata in forma anonima. 💕</p>
-        </div>
-      </div>
-
-      <!-- Messaggio di errore -->
-      <div id="error-message" style="display: none;">
-        <div style="background: rgba(244, 67, 54, 0.1); border: 1px solid rgba(244, 67, 54, 0.3); border-radius: 15px; padding: 20px; margin-top: 20px; text-align: center;">
-          <h3 style="color: #f44336; margin-bottom: 10px;">❌ Errore</h3>
-          <p style="color: rgba(255, 255, 255, 0.9); margin: 0;">Riprova tra qualche secondo. 🔄</p>
-        </div>
       </div>
     </div>
   </div>
