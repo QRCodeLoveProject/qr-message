@@ -5,6 +5,7 @@ const currentMessage = "Qui è dove leggerai le mie risposte e dove potrai scriv
 document.addEventListener("DOMContentLoaded", function() {
     console.log("🚀 Inizializzazione sistema QR...");
     
+
     // Mostra il messaggio
     displayCurrentMessage();
     
