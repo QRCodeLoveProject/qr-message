@@ -1,5 +1,5 @@
 // 🚀 CAMBIA SOLO QUESTA RIGA PER AGGIORNARE IL MESSAGGIO! 👇
-const currentMessage = "tutto bene, quando ci vediamo?";
+const currentMessage = "Qui è dove leggerai le mie risposte e dove potrai scrivermi in maniera anonima, senza dovermi lasciare il numero, così magari sei più tranquilla! XD";
 
 // Inizializzazione quando la pagina è caricata
 document.addEventListener("DOMContentLoaded", function() {
