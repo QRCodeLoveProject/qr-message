@@ -1,5 +1,5 @@
 // 🚀 CAMBIA SOLO QUESTA RIGA PER AGGIORNARE IL MESSAGGIO! 👇
-const currentMessage = "Qui è dove leggerai le mie risposte e dove potrai scrivermi in maniera anonima, senza dovermi lasciare il numero, così magari sei più tranquilla! ☺️😉🫣";
+const currentMessage = "Ed io? Saro Luca o qualcun'altro?😏";
 
 // Inizializzazione quando la pagina è caricata
 document.addEventListener("DOMContentLoaded", function() {
