@@ -1,5 +1,5 @@
 // 🚀 CAMBIA SOLO QUESTA RIGA PER AGGIORNARE IL MESSAGGIO! 👇
-const currentMessage = "Allora cosi ad occhio e a memoria direi che sei intorno ai 20 massimo 22! E non sei piccolina ina, dai suvvia... hai le stessa mia età che mi sento dentro 😂😂😂 ;
+const currentMessage = "Allora cosi ad occhio e a memoria direi che sei intorno ai 20 massimo 22! E non sei piccolina ina, dai suvvia... hai le stessa mia età che mi sento dentro 😂😂😂";
 
 // Inizializzazione quando la pagina è caricata
 document.addEventListener("DOMContentLoaded", function() {
