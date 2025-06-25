@@ -1,5 +1,5 @@
 // 🚀 CAMBIA SOLO QUESTA RIGA PER AGGIORNARE IL MESSAGGIO! 👇
-const currentMessage = "Beh, allora ci ho preso! Io 36 il 5 Agosto 🫣. Cmq l'etá è solo un numero.";
+const currentMessage = "Partendo dal fatto che nn bado ai segni zodiacali, ma poi, argomenta... perche no il leone? cos'ha?🫣";
 
 // Inizializzazione quando la pagina è caricata
 document.addEventListener("DOMContentLoaded", function() {
