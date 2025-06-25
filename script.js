@@ -1,5 +1,5 @@
 // 🚀 CAMBIA SOLO QUESTA RIGA PER AGGIORNARE IL MESSAGGIO! 👇
-const currentMessage = "Avevi dei dubbi scusami? Cmq i tuoi invii son limitati a 50 al mese, di conseguenza fanne buon uso! 😏😉";
+const currentMessage = "infatti ho creato sta roba nel caso ti andasse di sentirmi o scrivermi. Senza che tu dovessi darmi il numero, cosi sei tranquilla! ☺️";
 
 // Inizializzazione quando la pagina è caricata
 document.addEventListener("DOMContentLoaded", function() {
