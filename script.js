@@ -1,5 +1,5 @@
 // 🚀 CAMBIA SOLO QUESTA RIGA PER AGGIORNARE IL MESSAGGIO! 👇
-const currentMessage = "Se mi dici che siete solo te e la tua socia un giro lo vengo a fare... la distanza non e un problema, mica vengo a piedi! Però poi mi cagate e beviamo qualcosa eheh";
+const currentMessage = "Se mi dici che siete solo te e la tua socia un giro lo vengo a fare... la distanza non e un problema, mica vengo a piedi! Però poi mi cagate e beviamo qualcosa eheh... cmq sto per partire dopo mi raggiunge anche un amico da Ravenna. Il mio nunero è 3405484345, xche mettersi d'accordo da qui diventa complicato! Poi vedi tu 😉";
 
 // Inizializzazione quando la pagina è caricata
 document.addEventListener("DOMContentLoaded", function() {
