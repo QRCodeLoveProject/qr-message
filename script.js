@@ -1,5 +1,5 @@
 // 🚀 CAMBIA SOLO QUESTA RIGA PER AGGIORNARE IL MESSAGGIO! 👇
-const currentMessage = "Partendo dal fatto che nn bado ai segni zodiacali, ma poi, argomenta... perche no il leone? cos'ha?🫣";
+const currentMessage = "Macchediciii... ma che gente conosci 🤦🏻‍♂️. Cmq oggi fai la lunga al lavoro?";
 
 // Inizializzazione quando la pagina è caricata
 document.addEventListener("DOMContentLoaded", function() {
