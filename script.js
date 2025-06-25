@@ -1,5 +1,5 @@
 // 🚀 CAMBIA SOLO QUESTA RIGA PER AGGIORNARE IL MESSAGGIO! 👇
-const currentMessage = "Ed io? Saro Luca o qualcun'altro?😏";
+const currentMessage = "Ed io? Sarò Luca o qualcun'altro?😏";
 
 // Inizializzazione quando la pagina è caricata
 document.addEventListener("DOMContentLoaded", function() {
