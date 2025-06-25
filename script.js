@@ -1,5 +1,5 @@
 // 🚀 CAMBIA SOLO QUESTA RIGA PER AGGIORNARE IL MESSAGGIO! 👇
-const currentMessage = "Certo... e a te?(che poi se nn ti arrivano come fai a rispondere?) 🫣";
+const currentMessage = "Solitamente orzo, bustina di zucchero, goccio d'acqua naturale! Fatto con amore!😉 Ma quindi ti arrivano le mie risposte?";
 
 // Inizializzazione quando la pagina è caricata
 document.addEventListener("DOMContentLoaded", function() {
