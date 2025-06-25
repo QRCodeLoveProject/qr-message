@@ -1,5 +1,5 @@
 // 🚀 CAMBIA SOLO QUESTA RIGA PER AGGIORNARE IL MESSAGGIO! 👇
-const currentMessage = "Macchediciii... ma che gente conosci 🤦🏻‍♂️. Cmq oggi fai la lunga al lavoro?";
+const currentMessage = "beh, a me ancora non mi conosci quindi potrei dimostrarti che ti sbagli! Io arrivato a casa ora, ed in una giornata come questa, cosa fai? sport? palestra? hobby?";
 
 // Inizializzazione quando la pagina è caricata
 document.addEventListener("DOMContentLoaded", function() {
