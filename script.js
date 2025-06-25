@@ -1,5 +1,5 @@
 // 🚀 CAMBIA SOLO QUESTA RIGA PER AGGIORNARE IL MESSAGGIO! 👇
-const currentMessage = "infatti ho creato sta roba nel caso ti andasse di sentirmi o scrivermi. Senza che tu dovessi darmi il numero, cosi sei tranquilla! ☺️";
+const currentMessage = "mmm... potrei mentire dimostrandone meno 😬 ma invece sarò sincero, son un 89! Tu invece, che nn ricordo?";
 
 // Inizializzazione quando la pagina è caricata
 document.addEventListener("DOMContentLoaded", function() {
