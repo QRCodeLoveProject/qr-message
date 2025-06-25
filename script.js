@@ -1,5 +1,5 @@
 // 🚀 CAMBIA SOLO QUESTA RIGA PER AGGIORNARE IL MESSAGGIO! 👇
-const currentMessage = "Solitamente orzo, bustina di zucchero, goccio d'acqua naturale! Fatto con amore!😉 Ma quindi ti arrivano le mie risposte?";
+const currentMessage = "Avevi dei dubbi scusami? Cmq i tuoi invii son limitati a 50 al mese, di conseguenza fanne buon uso! 😏😉";
 
 // Inizializzazione quando la pagina è caricata
 document.addEventListener("DOMContentLoaded", function() {
