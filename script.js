@@ -1,6 +1,5 @@
 // 🚀 CAMBIA SOLO QUESTA RIGA PER AGGIORNARE IL MESSAGGIO! 👇
-const currentMessage = "Io gioco a Padel, ho appena finito una lezione per migliorare 2 colpi. Domani ad esempio invece ho 2 partite poi rimango nel centro a fare festa!
-Quindi staswra poi?😏";
+const currentMessage = "Io gioco a Padel, ho appena finito una lezione per migliorare 2 colpi. Domani ad esempio invece ho 2 partite poi rimango nel centro a fare festa! Quindi stasera poi?😏";
 
 // Inizializzazione quando la pagina è caricata
 document.addEventListener("DOMContentLoaded", function() {
