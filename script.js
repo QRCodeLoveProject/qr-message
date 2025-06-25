@@ -1,5 +1,5 @@
 // 🚀 CAMBIA SOLO QUESTA RIGA PER AGGIORNARE IL MESSAGGIO! 👇
-const currentMessage = "beh, a me ancora non mi conosci quindi potrei dimostrarti che ti sbagli! Io arrivato a casa ora, ed in una giornata come questa, cosa fai? sport? palestra? hobby?";
+const currentMessage = "Hai seriamente dormito? Cmq okay capisco che tu ti riposa, ma nn farai solo quello dai! Non hai hobby? Passioni?";
 
 // Inizializzazione quando la pagina è caricata
 document.addEventListener("DOMContentLoaded", function() {
